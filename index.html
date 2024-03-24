@@ -8,11 +8,31 @@
 <body>
     <h1>This Link Directs to the Ranks Sheet</h1>
     <button onclick="redirectToGoogleSheets()">Go to Rank Sheets</button>
+    <div id="txtContent"></div>
 
     <script>
         function redirectToGoogleSheets() {
             window.location.href = "https://docs.google.com/spreadsheets/d/1YKmbbBInVk0dJbob9kByvNE5HNKC_nCIdTZzWIfFxeQ/edit?usp=sharing";
         }
+
+        // Function to fetch and display content of the .txt file
+        function displayTxtFileContent() {
+            // Replace 'URL_TO_RAW_TXT_FILE' with the URL of your .txt file on GitHub
+            const url = 'https://raw.githubusercontent.com/Scarcity23/League_Ranks_misc/main/riot.txt';
+
+            fetch(url)
+                .then(response => response.text())
+                .then(text => {
+                    // Display the text content in a <pre> element to preserve formatting
+                    document.getElementById('txtContent').innerHTML = `<pre>${text}</pre>`;
+                })
+                .catch(error => {
+                    console.error('Error fetching file:', error);
+                });
+        }
+
+        // Call the function to display the content when the page loads
+        displayTxtFileContent();
     </script>
 </body>
 </html>
